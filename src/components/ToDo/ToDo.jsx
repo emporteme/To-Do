@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import './ToDo.css'
 
 export function Todo({ todo, toggleComplete, handleDelete, handleEdit }) {
-  const [newTitle, setNewTitle] = React.useState(todo.title);
+  const [newTitle, setNewTitle] = useState(todo.title);
+  const [newFile, setNewFile] = useState(todo.file);
+  const [newDate, setNewDate] = useState(todo.date);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -22,7 +24,18 @@ export function Todo({ todo, toggleComplete, handleDelete, handleEdit }) {
         style={{ textDecoration: todo.completed && "line-through" }}
         type="text"
         value={todo.title === "" ? newTitle : todo.title}
-        className="list"
+        onChange={handleChange}
+      />
+      <input
+        style={{ textDecoration: todo.completed && "line-through" }}
+        type="file"
+        value={todo.file === "" ? newFile : todo.file}
+        onChange={handleChange}
+      />
+      <input
+        style={{ textDecoration: todo.completed && "line-through" }}
+        type="date"
+        value={todo.date === "" ? newDate : todo.date}
         onChange={handleChange}
       />
       <div>
